@@ -20,3 +20,6 @@ systemctl son comandos como cd, ls y asi
 red basica aqui se utiliza ssh para conectarse a otras maquinas virtuales hay comandos como nw para comunicarse a los puertos etc
 en bash existe variables, scrips, condicionales, loops, automatizaciones con cron, pipes y redirecciones con |.
 
+
+
+corregir lo de system, proceso y servicio
