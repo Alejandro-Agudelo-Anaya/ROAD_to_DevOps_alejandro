@@ -1,0 +1,22 @@
+En linux podemos encontrar distribuciones de sistemas operativos como ubuntu, ache, kalis etc este es el kernel+ gui, es el
+favorito en los servidores por su velocidad, en buenas manos y con conocimientos se puede llegar a ser muy rapido en tareas y suele 
+ser liviano perfecto para tareas de servidores
+
+la diferencia entre proceso y servicio.
+
+donde miraria si algo falla?
+si algo falla lo miraria en los logs ya que esta es una forma en que podemos ver las alertas del sistema 
+
+del sistema operativo domino
+/home --> guarda los todo lo perteneciente  del usuario de su session
+/etc --->  es el panel de control, aqui se guarda imformacion importante para linux por ejemplo los archivos que debe arrancar apena
+el pc se encianda
+/var ---> de aqui lo mas importante es que se guarda los logs
+
+chmod --> para cambiar permisps
+chown --> cambiar propietario y/o grupo
+ps ultimos procesos con su pid, top es como el aministrador de tareas en windos, kill mata procesos sin necesidad de avisar a la app
+systemctl son comandos como cd, ls y asi
+red basica aqui se utiliza ssh para conectarse a otras maquinas virtuales hay comandos como nw para comunicarse a los puertos etc
+en bash existe variables, scrips, condicionales, loops, automatizaciones con cron, pipes y redirecciones con |.
+

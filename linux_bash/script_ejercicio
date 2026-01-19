@@ -1,0 +1,15 @@
+#!/bin/bash
+
+export DISPLAY=:0
+export DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus
+export LC_NUMERIC=C
+
+ram_uso=$(free | awk '/Mem/ {printf "%.0f", $3/$2 * 100}')
+gpu_uso=$(nvidia-smi --query-gpu=utilization.gpu --format=csv,noheader,nounits 2>/dev/null || echo 0)
+
+if [ "$ram_uso" -ge 0 ] || [ "$gpu_uso" -ge 90 ]; then
+    /usr/bin/notify-send -u critical \
+    "⚠ ALERTA DE SISTEMA" \
+    "RAM: ${ram_uso}% | GPU: ${gpu_uso}%"
+fi
+
