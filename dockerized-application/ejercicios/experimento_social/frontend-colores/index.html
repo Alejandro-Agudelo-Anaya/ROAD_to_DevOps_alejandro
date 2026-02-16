@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Elige un color</title>
+</head>
+<body style="text-align:center; font-family:sans-serif; margin-top:60px;">
+
+  <h1>Debes elegir un botón</h1>
+
+  <button id="rojo" style="background:red; color:white; padding:20px; font-size:22px; margin:10px;">
+    🔴 ROJO
+  </button>
+
+  <button id="azul" style="background:blue; color:white; padding:20px; font-size:22px; margin:10px;">
+    🔵 AZUL
+  </button>
+
+  <br><br>
+
+  <button id="verResultados" style="padding:10px 20px;">Ver resultados</button>
+
+  <h2 id="mensaje"></h2>
+  <h3 id="resultados"></h3>
+
+<script>
+const API = "http://localhost:5000";
+let yaVoto = false;
+
+document.getElementById('rojo').onclick = () => votar('rojo');
+document.getElementById('azul').onclick = () => votar('azul');
+document.getElementById('verResultados').onclick = verResultados;
+
+async function votar(color) {
+  if (yaVoto) {
+    document.getElementById('mensaje').innerText = "Ya votaste, refresca la página.";
+    return;
+  }
+
+  await fetch(API + '/votar', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ color })
+  });
+
+  document.getElementById('mensaje').innerText = "Votaste por " + color.toUpperCase();
+  yaVoto = true;
+}
+
+async function verResultados() {
+  const res = await fetch(API + '/resultados');
+  const data = await res.json();
+
+  document.getElementById('resultados').innerText =
+    `🔴 Rojo: ${data.rojo} | 🔵 Azul: ${data.azul}`;
+}
+</script>
+
+</body>
+</html>
+

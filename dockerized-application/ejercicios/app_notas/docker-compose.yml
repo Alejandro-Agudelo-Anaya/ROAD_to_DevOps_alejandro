@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  # Base de Datos
+  mongo:
+    image: mongo:latest
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  # Backend
+  backend:
+    build: ./back
+    container_name: back_notas
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo # El backend espera a que el servicio 'mongo' esté listo
+
+  # Frontend
+  frontend:
+    build: ./front
+    container_name: front_notas
+    ports:
+      - "80:80" # Mapeamos el puerto 80 del contenedor al 80 de tu PC
+    depends_on:
+      - backend
+volumes:
+    mongo_data:

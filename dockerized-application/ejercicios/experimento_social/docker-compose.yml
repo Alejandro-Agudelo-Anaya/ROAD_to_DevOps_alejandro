@@ -1,0 +1,30 @@
+
+
+services:
+
+  mongo:
+    image: mongo
+    container_name: mongo_db_colores
+    ports:
+      - "27017:27017"
+    volumes:
+      - datos_colores:/data/db
+
+  backend:
+    build: ./backend-colores
+    container_name: backend-colores
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongo
+
+  frontend:
+    build: ./frontend-colores
+    container_name: fronted-colores
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+
+volumes:
+  datos_colores:
